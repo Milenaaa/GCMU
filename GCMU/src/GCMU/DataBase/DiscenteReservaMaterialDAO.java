@@ -30,7 +30,7 @@ public class DiscenteReservaMaterialDAO {
 
         PreparedStatement stmt = null;
 
-        String sql = "INSERT INTO Discente_Reserva_Materiais_tb(horaPedirdo, horaDevoucao, data, matricula, idMaterial) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO Discente_Reserva_Materiais_tb(horaPedido, horaDevolucao, data, matricula, idMaterial) VALUES(?,?,?,?,?)";
 
         try {
 
@@ -39,9 +39,11 @@ public class DiscenteReservaMaterialDAO {
             stmt.setString(1, discenteReservaMaterial.getHoraPedido());
             stmt.setString(2, discenteReservaMaterial.getHoraDevolucao());
             stmt.setDate(3, discenteReservaMaterial.getData());
-            stmt.setInt(4, discenteReservaMaterial.getDiscente().getMatricula());
-            stmt.setInt(5, discenteReservaMaterial.getMaterial().getId());
-
+            //stmt.setInt(4, discenteReservaMaterial.getDiscente().getMatricula()); entendi oq mateus queria fazer... nooossa, entendi
+            //stmt.setInt(5, discenteReservaMaterial.getMaterial().getId());        mas pra facilitar botei direto
+            stmt.setInt(4, discenteReservaMaterial.getMatricula());
+            stmt.setInt(5, discenteReservaMaterial.getIdMaterial());
+            
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Salvo!");

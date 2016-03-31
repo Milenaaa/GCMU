@@ -20,6 +20,26 @@ public class DiscenteReservaMaterial {
     private Materiais material;
     private Discente discente;
 
+    
+    private int matricula;
+    private int idMaterial;
+    
+    public int getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
+
+    public int getIdMaterial() {
+        return idMaterial;
+    }
+
+    public void setIdMaterial(int idMaterial) {
+        this.idMaterial = idMaterial;
+    }
+    
     /**
      * @return the id
      */

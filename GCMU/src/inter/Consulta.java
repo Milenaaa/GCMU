@@ -8,13 +8,18 @@ package inter;
 import GCMU.DataBase.ChavesDAO;
 import GCMU.DataBase.DiscenteDAO;
 import GCMU.DataBase.DiscenteReservaChaveDAO;
+import GCMU.DataBase.DocenteDAO;
 import GCMU.DataBase.MateriaisDAO;
 import GCMU.DataBase.UtensiliosDAO;
 import GCMU.classes.Chaves;
 import GCMU.classes.Discente;
 import GCMU.classes.DiscenteReservaChave;
+import GCMU.classes.Docente;
 import GCMU.classes.Materiais;
 import GCMU.classes.Utensilios;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -73,7 +78,7 @@ public class Consulta extends javax.swing.JFrame {
         jCheckBox1.setText("jCheckBox1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(767, 400));
+        setPreferredSize(new java.awt.Dimension(767, 500));
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -308,7 +313,7 @@ public class Consulta extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Suap", "Nome", "Email", "Curso"
+                "Suap", "Nome", "Email", "Cargo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -364,7 +369,7 @@ public class Consulta extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
@@ -465,6 +470,22 @@ public class Consulta extends javax.swing.JFrame {
         jPanel5.setVisible(false);
         jPanel4.setVisible(false);
         jPanel6.setVisible(true);
+        DefaultTableModel model = (DefaultTableModel) tabela4.getModel();
+        model.setNumRows(0);
+        DocenteDAO dis = new DocenteDAO();
+        try {
+            for (Docente u : dis.read()) {
+                model.addRow(new Object[]{
+                    u.getSuap(),
+                    u.getName(),
+                    u.getEmail(),
+                    u.getCargo()
+                        
+                });
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

@@ -55,6 +55,20 @@ CONSTRAINT fk_chave_pessoa FOREIGN KEY(idChave) REFERENCES chaves_tb(idChave)
 );
 
 
+
+CREATE TABLE Discente_Reserva_Materiais_tb (
+id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+horaPedido TIME,
+horaDevolucao TIME,
+data DATE,
+matricula INT,
+idMaterial INT UNSIGNED, 
+CONSTRAINT fk_Pessoa_Materiais FOREIGN KEY(matricula) REFERENCES discente_tb(matricula),
+CONSTRAINT fk_Materiais_Pessoa FOREIGN KEY 
+(idMaterial) REFERENCES materiais_tb(idMaterial)
+);
+
+
 CREATE TABLE Pessoa_Pesquisa_Utensilios_tb (
 horaPedido TIME PRIMARY KEY,
 horaDevolucao TIME,
@@ -65,19 +79,6 @@ CONSTRAINT fk_Pessoa_Utencilios FOREIGN KEY
 (matricula) REFERENCES pessoa_tb(matricula),
 CONSTRAINT fk_Utensilios_Pessoa FOREIGN KEY 
 (idUtensilio) REFERENCES utensilios_tb(id)
-);
-
-CREATE TABLE Discente_Reserva_Materiais_tb (
-id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-horaPedido TIME,
-horaDevolucao TIME,
-data DATE,
-matricula int(10) UNSIGNED,
-idMaterial INT(10) UNSIGNED, 
-CONSTRAINT fk_Pessoa_Materiais FOREIGN KEY 
-(matricula) REFERENCES discente_tb(matricula),
-CONSTRAINT fk_Materiais_Pessoa FOREIGN KEY 
-(idMaterial) REFERENCES discente_tb(idMaterial)
 );
 
 CREATE TABLE bkpPessoa_tb (

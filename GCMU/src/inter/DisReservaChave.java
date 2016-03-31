@@ -204,7 +204,7 @@ public class DisReservaChave extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
-        Crud m = new Crud();
+        Reserva m = new Reserva();
         m.setVisible(true);
         dispose();
     }//GEN-LAST:event_btVoltarActionPerformed

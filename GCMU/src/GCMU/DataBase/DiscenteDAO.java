@@ -81,6 +81,39 @@ public class DiscenteDAO {
         return drcs;
 
     }
+     public List<Discente> read2(Discente di) throws SQLException {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Discente> dis = new ArrayList<Discente>();
+        Discente discente = new Discente();
+        try {
+            String sql = "SELECT name , permissao FROM discente_tb where matricula = ?";
+            
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, di.getMatricula());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                
+                // Pessoa
+                Discente disc = new Discente();
+
+               
+                
+                disc.setName(rs.getString("name"));
+                
+                disc.setPermissao(rs.getString("permissao"));
+
+                dis.add(disc);
+            }
+
+        } catch (SQLException sqle) {
+
+           
+        }
+
+        return dis;
+    }
 
     public Discente getById(Integer pk) throws SQLException {
 

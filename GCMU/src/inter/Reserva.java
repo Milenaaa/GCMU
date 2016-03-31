@@ -46,6 +46,11 @@ public class Reserva extends javax.swing.JFrame {
         });
 
         jButton2.setText("Materiais");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         btVoltar.setText("Voltar");
         btVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +121,12 @@ public class Reserva extends javax.swing.JFrame {
                                        
 
     }//GEN-LAST:event_btVoltarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       DisReservaMaterial dm = new DisReservaMaterial();
+       dm.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

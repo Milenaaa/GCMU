@@ -7,6 +7,9 @@ package inter;
 
 import GCMU.DataBase.DiscenteReservaMaterialDAO;
 import GCMU.classes.DiscenteReservaMaterial;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -174,21 +177,22 @@ public class DisReservaMaterial extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        DiscenteReservaMaterial Rc = new DiscenteReservaMaterial();
+        DiscenteReservaMaterial Rm = new DiscenteReservaMaterial();
         DiscenteReservaMaterialDAO drd = new DiscenteReservaMaterialDAO();
 
-        Rc.setData(null);
-        Rc.setHoraDevolucao(null);
-        Rc.setHoraPedido(TextHora.getText());
-        Rc.setIdMaterial(Integer.parseInt(TextId.getText()));
-        Rc.setMatricula(Integer.parseInt(TextMatricula.getText()));
+        Rm.setData(null);
+        Rm.setHoraDevolucao(null);
+        Rm.setHoraPedido(TextHora.getText());
+        Rm.setMatricula(Integer.parseInt(TextMatricula.getText()));
+        Rm.setIdMaterial(Integer.parseInt(TextId.getText()));
 
         try {
-            drd.insert(Rc);
+            drd.insert(Rm);
 
         } catch (SQLException ex) {
             Logger.getLogger(DisReservaChave.class.getName()).log(Level.SEVERE, null, ex);
@@ -196,7 +200,7 @@ public class DisReservaMaterial extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
-        Crud m = new Crud();
+        Reserva m = new Reserva();
         m.setVisible(true);
         dispose();
     }//GEN-LAST:event_btVoltarActionPerformed

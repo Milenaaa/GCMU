@@ -2,7 +2,11 @@ package inter;
 
 import GCMU.DataBase.DiscenteDAO;
 import GCMU.classes.Discente;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import static org.eclipse.persistence.platform.database.oracle.plsql.OraclePLSQLTypes.Int;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -183,12 +187,31 @@ public class Memorando extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setNumRows(0);
         DiscenteDAO dis = new DiscenteDAO();
-        for (Discente u : dis.read()) {
-            model.addRow(new Object[]{        
-                u.getName(),
-                u.getPermissao()
+        
+        //.trim()=="" ou .isEmpty()
+        if(jTextField2.getText().trim().equals("")){ 
+            for (Discente u : dis.read()) {
+                model.addRow(new Object[]{        
+                    u.getName(),
+                    u.getPermissao()
 
-            });
+                });
+            }
+        }
+        else {
+            try {
+                Discente di = new Discente();
+                di.setMatricula(Integer.parseInt(jTextField2.getText()));
+                for (Discente d: dis.read2(di)){
+                    model.addRow(new Object[]{      
+                        d.getName(),
+                        d.getPermissao()
+                    });
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Memorando.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

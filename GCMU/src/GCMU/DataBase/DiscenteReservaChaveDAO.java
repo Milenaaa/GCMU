@@ -24,7 +24,7 @@ public class DiscenteReservaChaveDAO {
 
         PreparedStatement stmt = null;
 
-        String sql = "INSERT INTO Discente_Reserva_Chaves_tb(horaPedido, horDevolucao, data, matricula, idChave) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO Discente_Reserva_Chaves_tb(horaPedido, horaDevolucao, data, matricula, idChave) VALUES(?,?,?,?,?)";
 
         try {
 

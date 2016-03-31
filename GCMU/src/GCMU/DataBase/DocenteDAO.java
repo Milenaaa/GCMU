@@ -45,6 +45,39 @@ public class DocenteDAO {
         return true;
 
     }
+    public List<Docente> read() throws SQLException {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Docente> docentes = new ArrayList<Docente>();
+
+        try {
+            String sql = "SELECT * FROM docente_tb";
+
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                
+                // Pessoa
+                Docente docente = new Docente();
+
+                docente.setSuap(rs.getInt("suap"));
+                docente.setCargo(rs.getString("cargo"));
+                docente.setName(rs.getString("name"));
+                docente.setEmail(rs.getString("email"));
+                docente.setPermissao(rs.getString("permissao"));
+
+                docentes.add(docente);
+            }
+
+        } catch (SQLException sqle) {
+
+           
+        }
+
+        return docentes;
+    }
+   
 
     public Docente getById(Integer pk) throws SQLException {
 
