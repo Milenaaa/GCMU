@@ -187,9 +187,9 @@ public class DisReservaChave extends javax.swing.JFrame {
         DiscenteReservaChave Rc = new DiscenteReservaChave();
         DiscenteReservaChaveDAO drd = new DiscenteReservaChaveDAO();
         
-         Rc.setData(null);
-        Rc.setHoraDevolucao(null);
-        Rc.setHoraPedido(TextHora.getText());
+         
+        
+        
         Rc.setIdChave(Integer.parseInt(TextId.getText()));
         Rc.setMatricula(Integer.parseInt(TextMatricula.getText()));
         c.setStatus("Reservado");

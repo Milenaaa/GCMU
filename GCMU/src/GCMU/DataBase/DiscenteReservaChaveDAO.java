@@ -24,17 +24,16 @@ public class DiscenteReservaChaveDAO {
 
         PreparedStatement stmt = null;
 
-        String sql = "INSERT INTO Discente_Reserva_Chaves_tb(horaPedido, horaDevolucao, data, matricula, idChave) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO Discente_Reserva_Chaves_tb(horaPedido, horaDevolucao, data, matricula, idChave) VALUES(CURTIME(),null,CURDATE(),?,?)";
 
         try {
 
             stmt = (PreparedStatement) con.prepareStatement(sql);
 
-            stmt.setString(1, discenteReservaChave.getHoraPedido());
-            stmt.setString(2, discenteReservaChave.getHoraDevolucao());
-            stmt.setDate(3, discenteReservaChave.getData());
-            stmt.setInt(4, discenteReservaChave.getMatricula());
-            stmt.setInt(5, discenteReservaChave.getIdChave());
+            
+            stmt.setInt(1, discenteReservaChave.getMatricula());
+            stmt.setInt(2, discenteReservaChave.getIdChave());
+           
 
             stmt.executeUpdate();
 
