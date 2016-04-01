@@ -178,12 +178,9 @@ public class DocReservaChave extends javax.swing.JFrame {
         DocenteReservaChave Rc = new DocenteReservaChave();
         DocenteReservaChaveDAO drd = new DocenteReservaChaveDAO();
 
-        Rc.setData(null);
-        Rc.setHoraDevolucao(null);
-        Rc.setHoraPedido(null);
         Rc.setIdChave(Integer.parseInt(TextId.getText()));
         Rc.setSuap(Integer.parseInt(TextMatricula.getText()));
-        c.setStatus("RESERVA");
+        c.setStatus("RESERVADA");
         c.setId(Integer.parseInt(TextId.getText()));
 
         try {

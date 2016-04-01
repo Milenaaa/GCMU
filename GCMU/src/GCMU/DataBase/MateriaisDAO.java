@@ -475,5 +475,33 @@ public class MateriaisDAO {
         }
 
     }
+    public void updateReserva(Materiais materiais) throws SQLException {
 
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        try {
+
+            String sql = "UPDATE materiais_tb"
+                    + " SET status =?"
+                    + " WHERE idMaterial=?";
+
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+
+            stmt.setString(1, materiais.getStatus());
+
+            stmt.setInt(2, materiais.getId());
+           
+
+            stmt.execute();
+
+        } catch (SQLException e) {
+
+            System.out.println(e);
+
+        } finally {
+
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+
+    }
 }

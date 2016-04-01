@@ -6,7 +6,9 @@
 package inter;
 
 import GCMU.DataBase.DiscenteReservaMaterialDAO;
+import GCMU.DataBase.MateriaisDAO;
 import GCMU.classes.DiscenteReservaMaterial;
+import GCMU.classes.Materiais;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -181,17 +183,18 @@ public class DisReservaMaterial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        Materiais m = new Materiais();
+        MateriaisDAO md = new MateriaisDAO();
         DiscenteReservaMaterial Rm = new DiscenteReservaMaterial();
         DiscenteReservaMaterialDAO drd = new DiscenteReservaMaterialDAO();
-
-        
+        m.setId(Integer.parseInt(TextId.getText()));
+        m.setStatus("RESERVADO");
         Rm.setMatricula(Integer.parseInt(TextMatricula.getText()));
         Rm.setIdMaterial(Integer.parseInt(TextId.getText()));
 
         try {
             drd.insert(Rm);
-
+            md.updateReserva(m);
         } catch (SQLException ex) {
             Logger.getLogger(DisReservaChave.class.getName()).log(Level.SEVERE, null, ex);
         }

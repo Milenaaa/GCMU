@@ -68,6 +68,17 @@ CONSTRAINT fk_Materiais_Pessoa FOREIGN KEY
 (idMaterial) REFERENCES materiais_tb(idMaterial)
 );
 
+CREATE TABLE Docente_Reserva_Chaves_tb(
+id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+horaPedido  TIME,
+horaDevolucao TIME,
+data DATE,
+suap INT UNSIGNED, 
+idChave INT UNSIGNED,
+CONSTRAINT fk_docente_Chaves FOREIGN KEY(suap) REFERENCES docente_tb(suap),
+CONSTRAINT fk_chave_docente FOREIGN KEY(idChave) REFERENCES chaves_tb(idChave)
+);
+
 
 CREATE TABLE Pessoa_Pesquisa_Utensilios_tb (
 horaPedido TIME PRIMARY KEY,
