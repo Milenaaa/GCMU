@@ -5,9 +5,9 @@
  */
 package inter;
 
-import GCMU.DataBase.DiscenteReservaMaterialDAO;
+import GCMU.DataBase.DocenteReservaMaterialDAO;
 import GCMU.DataBase.MateriaisDAO;
-import GCMU.classes.DiscenteReservaMaterial;
+import GCMU.classes.DocenteReservaMaterial;
 import GCMU.classes.Materiais;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -15,14 +15,14 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Milena
+ * @author ClelioJr
  */
-public class DisReservaMaterial extends javax.swing.JFrame {
+public class DocReservaMaterial extends javax.swing.JFrame {
 
     /**
-     * Creates new form DisReservaMaterial
+     * Creates new form DocReservaMaterial
      */
-    public DisReservaMaterial() {
+    public DocReservaMaterial() {
         initComponents();
     }
 
@@ -48,10 +48,10 @@ public class DisReservaMaterial extends javax.swing.JFrame {
 
         AddPessoa.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jLabel1.setText("Matricula");
+        jLabel1.setText("Suap");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel3.setText("Discente Reserva de Material");
+        jLabel3.setText("Docente Reserva de Material");
 
         jButton1.setText("Reservar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +104,7 @@ public class DisReservaMaterial extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(TextId, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         AddPessoaLayout.setVerticalGroup(
             AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,17 +144,16 @@ public class DisReservaMaterial extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Materiais m = new Materiais();
         MateriaisDAO md = new MateriaisDAO();
-        DiscenteReservaMaterial Rm = new DiscenteReservaMaterial();
-        DiscenteReservaMaterialDAO drd = new DiscenteReservaMaterialDAO();
+        DocenteReservaMaterial Rm = new DocenteReservaMaterial();
+        DocenteReservaMaterialDAO drd = new DocenteReservaMaterialDAO();
         m.setId(Integer.parseInt(TextId.getText()));
         m.setStatus("RESERVADO");
-        Rm.setMatricula(Integer.parseInt(TextMatricula.getText()));
+        Rm.setSuap(Integer.parseInt(TextMatricula.getText()));
         Rm.setIdMaterial(Integer.parseInt(TextId.getText()));
 
         try {
@@ -196,20 +195,20 @@ public class DisReservaMaterial extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DisReservaMaterial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DocReservaMaterial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DisReservaMaterial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DocReservaMaterial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DisReservaMaterial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DocReservaMaterial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DisReservaMaterial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DocReservaMaterial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DisReservaMaterial().setVisible(true);
+                new DocReservaMaterial().setVisible(true);
             }
         });
     }

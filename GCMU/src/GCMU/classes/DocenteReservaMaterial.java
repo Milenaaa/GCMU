@@ -19,7 +19,24 @@ public class DocenteReservaMaterial {
     private Date data;
     private Materiais material;
     private Docente docente;
+    private int suap;
+    private int idMaterial;
 
+    public int getSuap() {
+        return suap;
+    }
+
+    public void setSuap(int suap) {
+        this.suap = suap;
+    }
+
+    public int getIdMaterial() {
+        return idMaterial;
+    }
+
+    public void setIdMaterial(int idMaterial) {
+        this.idMaterial = idMaterial;
+    }
     /**
      * @return the id
      */

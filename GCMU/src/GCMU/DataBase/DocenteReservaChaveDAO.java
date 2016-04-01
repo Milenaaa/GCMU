@@ -35,7 +35,7 @@ public class DocenteReservaChaveDAO {
 
             
             stmt.setInt(1, docenteReservaChave.getSuap());
-            stmt.setInt(2, docenteReservaChave.getId());
+            stmt.setInt(2, docenteReservaChave.getIdChave());
 
             stmt.executeUpdate();
 
