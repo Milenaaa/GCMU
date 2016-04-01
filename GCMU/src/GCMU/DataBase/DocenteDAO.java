@@ -78,7 +78,40 @@ public class DocenteDAO {
         return docentes;
     }
    
+     public List<Docente> read2(Docente doce) throws SQLException {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Docente> doc = new ArrayList<Docente>();
+        
+        try {
+            String sql = "SELECT name , permissao FROM docente_tb where suap = ?";
+            
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, doce.getSuap());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                
+               
+                Docente d = new Docente();
 
+               
+                
+                d.setName(rs.getString("name"));
+                
+                d.setPermissao(rs.getString("permissao"));
+
+                doc.add(d);
+            }
+
+        } catch (SQLException sqle) {
+
+           
+        }
+
+        return doc;
+    }
+     
     public Docente getById(Integer pk) throws SQLException {
 
         Docente docente = null;

@@ -600,5 +600,33 @@ public class ChavesDAO {
         
             
     }
+    public void updateReserva(Chaves chaves) throws SQLException {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        try {
 
+            String sql = "UPDATE chaves_tb"
+                    + " SET status=?"
+                    + " WHERE idChave=?";
+
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+
+            stmt.setString(1, chaves.getStatus());
+        
+            stmt.setInt(2, chaves.getId());
+
+            stmt.execute();
+            
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        } finally {
+
+            ConnectionFactory.closeConnection(con, stmt);
+
+        }
+        
+            
+    }
 }

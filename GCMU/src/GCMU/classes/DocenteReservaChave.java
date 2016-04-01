@@ -20,6 +20,24 @@ public class DocenteReservaChave {
     private Date data;
     private Chaves chaves;
     private Docente docente;
+    private int suap;
+    private int idChave;
+    public int getSuap() {
+        return suap;
+    }
+
+    public void setSuap(int suap) {
+        this.suap = suap;
+    }
+
+    public int getIdChave() {
+        return idChave;
+    }
+
+    public void setIdChave(int idChave) {
+        this.idChave = idChave;
+    }
+   
 
     /**
      * @return the id
