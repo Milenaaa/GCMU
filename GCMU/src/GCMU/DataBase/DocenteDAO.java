@@ -256,17 +256,17 @@ public class DocenteDAO {
         try {
 
             String sql = "UPDATE docente_tb"
-                    + " SET suap=?, cargo=?, name=?, email=?, permissao=?"
+                    + " SET  cargo=?, name=?, email=?, permissao=?"
                     + " WHERE suap=?";
 
             stmt = (PreparedStatement) con.prepareStatement(sql);
 
-            stmt.setLong(1, docente.getSuap());
-            stmt.setString(2, docente.getCargo());
-            stmt.setString(3, docente.getName());
-            stmt.setString(4, docente.getEmail());
-            stmt.setString(5, docente.getPermissao());
-            stmt.setLong(6, docente.getSuap());
+           
+            stmt.setString(1, docente.getCargo());
+            stmt.setString(2, docente.getName());
+            stmt.setString(3, docente.getEmail());
+            stmt.setString(4, docente.getPermissao());
+            stmt.setLong(5, docente.getSuap());
 
             stmt.execute();
 

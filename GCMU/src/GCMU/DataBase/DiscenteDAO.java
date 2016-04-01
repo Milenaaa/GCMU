@@ -219,14 +219,15 @@ public class DiscenteDAO {
         try {
 
             String sql = "UPDATE discente_tb"
-                    + " SET matricula=?, curso=?"
+                    + " SET permissao= ?, email= ?,name=?, curso=?"
                     + " WHERE matricula=?";
 
             stmt = (PreparedStatement) con.prepareStatement(sql);
-
-            stmt.setLong(1, discente.getMatricula());
-            stmt.setString(2, discente.getCurso());
-            stmt.setLong(3, discente.getMatricula());
+            stmt.setString(1, discente.getPermissao());
+            stmt.setString(2, discente.getEmail());
+            stmt.setString(3, discente.getName());
+            stmt.setString(4, discente.getCurso());
+            stmt.setInt(5, discente.getMatricula());
 
             stmt.execute();
 

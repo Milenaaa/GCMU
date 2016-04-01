@@ -48,6 +48,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(459, 459));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -195,7 +196,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btConsultaActionPerformed
 
     private void btReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReservaActionPerformed
-        Reserva r = new Reserva();
+        ControleReservas r = new ControleReservas();
         r.setVisible(true);
         dispose();                                       
 

@@ -96,6 +96,11 @@ public class Crud extends javax.swing.JFrame {
         });
 
         jButton9.setText("Docente");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Material");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -316,7 +321,9 @@ public class Crud extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        
+    AtualizarDiscente dis = new AtualizarDiscente();
+    dis.setVisible(true);
+    dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -330,6 +337,12 @@ public class Crud extends javax.swing.JFrame {
        ma.setVisible(true);
        dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+       AtualizarDocente doc = new AtualizarDocente();
+       doc.setVisible(true);
+       dispose();
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments

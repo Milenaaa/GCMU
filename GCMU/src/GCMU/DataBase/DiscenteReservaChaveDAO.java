@@ -1,5 +1,6 @@
 package GCMU.DataBase;
 
+import GCMU.classes.Discente;
 import GCMU.classes.DiscenteReservaChave;
 import GCMU.classes.DocenteReservaChave;
 import com.mysql.jdbc.Connection;
@@ -59,6 +60,40 @@ public class DiscenteReservaChaveDAO {
             String sql = "SELECT * FROM Discente_Reserva_Chaves_tb";
 
             stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                DiscenteReservaChave drc = new DiscenteReservaChave();
+                drc.setIdChave(rs.getInt("idChave"));
+                drc.setData(rs.getDate("data"));
+                drc.setMatricula(rs.getInt("matricula"));
+                drc.setHoraDevolucao(rs.getString("horaDevolucao"));
+                drc.setHoraPedido(rs.getString("horaPedido"));
+                drcs.add(drc);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChavesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return drcs;
+
+    }
+   
+   public List<DiscenteReservaChave> read2(Discente di) {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DiscenteReservaChave> drcs = new ArrayList<DiscenteReservaChave>();
+
+        try {
+
+            String sql = "SELECT * FROM Discente_Reserva_Chaves_tb where matricula = ?";
+
+            stmt = con.prepareStatement(sql);
+             stmt.setInt(1, di.getMatricula());
             rs = stmt.executeQuery();
 
             while (rs.next()) {

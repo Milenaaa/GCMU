@@ -90,25 +90,6 @@ CONSTRAINT fk_dicente_Materiais FOREIGN KEY(suap) REFERENCES docente_tb(suap),
 CONSTRAINT fk_Materiais_dicente FOREIGN KEY (idMaterial) REFERENCES materiais_tb(idMaterial)
 );
 
-CREATE TABLE Pessoa_Pesquisa_Utensilios_tb (
-horaPedido TIME PRIMARY KEY,
-horaDevolucao TIME,
-data DATE,
-matricula Int(10) UNSIGNED, 
-idUtensilio INT(10) UNSIGNED,
-CONSTRAINT fk_Pessoa_Utencilios FOREIGN KEY 
-(matricula) REFERENCES pessoa_tb(matricula),
-CONSTRAINT fk_Utensilios_Pessoa FOREIGN KEY 
-(idUtensilio) REFERENCES utensilios_tb(id)
-);
-
-CREATE TABLE bkpPessoa_tb (
-matricula INT UNSIGNED PRIMARY KEY,
-name VARCHAR(30) NOT NULL,
-email VARCHAR(30),
-senha VARCHAR(30),
-telefone VARCHAR(30)
-);
 
 
 INSERT INTO pessoa_tb( matricula, name, email, telefone, permissao)

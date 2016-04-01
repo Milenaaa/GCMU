@@ -6,6 +6,7 @@
 package GCMU.DataBase;
 
 import GCMU.classes.Chaves;
+import GCMU.classes.Docente;
 import GCMU.classes.DocenteReservaChave;
 import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,7 +53,72 @@ public class DocenteReservaChaveDAO {
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
+public List<DocenteReservaChave> read() {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DocenteReservaChave> drcs = new ArrayList<DocenteReservaChave>();
 
+        try {
+
+            String sql = "SELECT * FROM Docente_Reserva_Chaves_tb";
+
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                DocenteReservaChave drc = new DocenteReservaChave();
+                drc.setIdChave(rs.getInt("idChave"));
+                drc.setData(rs.getDate("data"));
+                drc.setSuap(rs.getInt("suap"));
+                drc.setHoraDevolucao(rs.getString("horaDevolucao"));
+                drc.setHoraPedido(rs.getString("horaPedido"));
+                drcs.add(drc);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChavesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return drcs;
+
+    }
+   
+   public List<DocenteReservaChave> read2(Docente doc) {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DocenteReservaChave> drcs = new ArrayList<DocenteReservaChave>();
+
+        try {
+
+            String sql = "SELECT * FROM Docente_Reserva_Chaves_tb where suap = ?";
+
+            stmt = con.prepareStatement(sql);
+             stmt.setInt(1, doc.getSuap());
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                DocenteReservaChave drc = new DocenteReservaChave();
+                drc.setIdChave(rs.getInt("idChave"));
+                drc.setData(rs.getDate("data"));
+                drc.setSuap(rs.getInt("suap"));
+                drc.setHoraDevolucao(rs.getString("horaDevolucao"));
+                drc.setHoraPedido(rs.getString("horaPedido"));
+                drcs.add(drc);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChavesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return drcs;
+
+    }
     public DocenteReservaChave getById(Integer pk) throws SQLException {
 
         Connection con = (Connection) ConnectionFactory.getConnection();
