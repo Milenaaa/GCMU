@@ -192,12 +192,12 @@ public class DisReservaChave extends javax.swing.JFrame {
         
         Rc.setIdChave(Integer.parseInt(TextId.getText()));
         Rc.setMatricula(Integer.parseInt(TextMatricula.getText()));
-        c.setStatus("Reservado");
+        c.setStatus("RESERVADO");
         c.setId(Integer.parseInt(TextId.getText()));
        
         try {
             drd.insert(Rc);
-            
+            cd.updateReserva(c);
         } catch (SQLException ex) {
             Logger.getLogger(DisReservaChave.class.getName()).log(Level.SEVERE, null, ex);
         }

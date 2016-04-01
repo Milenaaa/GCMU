@@ -185,9 +185,7 @@ public class DisReservaMaterial extends javax.swing.JFrame {
         DiscenteReservaMaterial Rm = new DiscenteReservaMaterial();
         DiscenteReservaMaterialDAO drd = new DiscenteReservaMaterialDAO();
 
-        Rm.setData(null);
-        Rm.setHoraDevolucao(null);
-        Rm.setHoraPedido(TextHora.getText());
+        
         Rm.setMatricula(Integer.parseInt(TextMatricula.getText()));
         Rm.setIdMaterial(Integer.parseInt(TextId.getText()));
 
