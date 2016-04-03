@@ -7,6 +7,7 @@ package inter;
 
 import GCMU.DataBase.UtensiliosDAO;
 import GCMU.classes.Utensilios;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -45,7 +46,8 @@ public class CadastroUtensilios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        AddPessoa.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        AddPessoa.setBackground(new java.awt.Color(191, 239, 255));
+        AddPessoa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
 
         jLabel1.setText("Tipo");
 
@@ -58,6 +60,7 @@ public class CadastroUtensilios extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel3.setText("Cadastro Utensilio");
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Cadastrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +91,11 @@ public class CadastroUtensilios extends javax.swing.JFrame {
                 TextMarcaActionPerformed(evt);
             }
         });
+        TextMarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TextMarcaKeyPressed(evt);
+            }
+        });
 
         btVoltar.setText("Voltar");
         btVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,29 +110,31 @@ public class CadastroUtensilios extends javax.swing.JFrame {
             AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddPessoaLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addGroup(AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddPessoaLayout.createSequentialGroup()
-                        .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, AddPessoaLayout.createSequentialGroup()
+                .addGroup(AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddPessoaLayout.createSequentialGroup()
+                        .addGap(0, 212, Short.MAX_VALUE)
+                        .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(25, 25, 25))
+                    .addGroup(AddPessoaLayout.createSequentialGroup()
+                        .addGroup(AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AddPessoaLayout.createSequentialGroup()
+                                .addGroup(AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(TextLocal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                    .addComponent(TextObs, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TextMarca)))
+                            .addGroup(AddPessoaLayout.createSequentialGroup()
                                 .addGap(48, 48, 48)
-                                .addComponent(TextTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(AddPessoaLayout.createSequentialGroup()
-                            .addGroup(AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel2))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(TextObs, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                                .addComponent(TextLocal)
-                                .addComponent(TextMarca)))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                                .addComponent(TextTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3))
+                        .addGap(12, 12, 12))))
         );
         AddPessoaLayout.setVerticalGroup(
             AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,31 +157,28 @@ public class CadastroUtensilios extends javax.swing.JFrame {
                 .addGroup(AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(TextMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(btVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(AddPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(AddPessoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(AddPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(AddPessoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(AddPessoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextTipoActionPerformed
@@ -205,6 +212,18 @@ public class CadastroUtensilios extends javax.swing.JFrame {
         m.setVisible(true);
         dispose();
     }//GEN-LAST:event_btVoltarActionPerformed
+
+    private void TextMarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextMarcaKeyPressed
+if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+        Utensilios u = new Utensilios();
+        UtensiliosDAO DAO = new UtensiliosDAO();
+        u.setObservacao(TextObs.getText());
+        u.setTipo(TextTipo.getText());
+        u.setLocall(TextLocal.getText());
+        u.setMarca(TextMarca.getText());
+        DAO.insert(u);  
+}// TODO add your handling code here:
+    }//GEN-LAST:event_TextMarcaKeyPressed
 
     /**
      * @param args the command line arguments

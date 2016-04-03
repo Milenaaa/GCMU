@@ -115,7 +115,7 @@ public class DiscenteReservaChaveDAO {
         return drcs;
 
     }
-
+  
     public DiscenteReservaChave getById(Integer pk) throws SQLException {
 
         Connection con = (Connection) ConnectionFactory.getConnection();
@@ -198,7 +198,7 @@ public class DiscenteReservaChaveDAO {
 
             String sql = "UPDATE Discente_Reserva_Chaves_tb"
                     + " SET horaDevolucao=?"
-                    + " WHERE id=?";
+                    + " WHERE matricula=?";
 
             stmt = (PreparedStatement) con.prepareStatement(sql);
 
@@ -219,5 +219,64 @@ public class DiscenteReservaChaveDAO {
         }
 
     }
+    public boolean delete(Integer pk) throws SQLException {
+        Connection con = (Connection) ConnectionFactory.getConnection();
 
+        PreparedStatement stmt = null;
+
+        try {
+
+            String sql = "DELETE FROM Discente_Reserva_Chaves_tb"
+                    + " WHERE matricula = "+pk;
+
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            stmt.execute();
+            JOptionPane.showMessageDialog(null, "Removido!");
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        } finally {
+
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+
+        return true;
+    }
+    
+    
+       public int idChave(Integer pk) throws SQLException {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        int idChave = 0;
+
+        try {
+
+            String sql = "select `idChave` FROM `discente_reserva_chaves_tb` "
+                    + " WHERE matricula = "+pk;
+
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+             rs = stmt.executeQuery(sql);
+             while(rs.next()){
+                idChave = rs.getInt("idChave");
+             }
+            
+            JOptionPane.showMessageDialog(null, "Removido!");
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        } finally {
+
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+
+        return idChave;
+    }
+   
 }

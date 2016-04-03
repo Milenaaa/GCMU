@@ -57,7 +57,8 @@ public class Memorando extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 51));
+        jPanel1.setBackground(new java.awt.Color(191, 239, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         jPanel1.setForeground(new java.awt.Color(255, 255, 102));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {

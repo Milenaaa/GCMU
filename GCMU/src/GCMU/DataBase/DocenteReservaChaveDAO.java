@@ -36,7 +36,6 @@ public class DocenteReservaChaveDAO {
 
             stmt = (PreparedStatement) con.prepareStatement(sql);
 
-            
             stmt.setInt(1, docenteReservaChave.getSuap());
             stmt.setInt(2, docenteReservaChave.getIdChave());
 
@@ -53,7 +52,8 @@ public class DocenteReservaChaveDAO {
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
-public List<DocenteReservaChave> read() {
+
+    public List<DocenteReservaChave> read() {
         Connection con = (Connection) ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -85,8 +85,8 @@ public List<DocenteReservaChave> read() {
         return drcs;
 
     }
-   
-   public List<DocenteReservaChave> read2(Docente doc) {
+
+    public List<DocenteReservaChave> read2(Docente doc) {
         Connection con = (Connection) ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -97,7 +97,7 @@ public List<DocenteReservaChave> read() {
             String sql = "SELECT * FROM Docente_Reserva_Chaves_tb where suap = ?";
 
             stmt = con.prepareStatement(sql);
-             stmt.setInt(1, doc.getSuap());
+            stmt.setInt(1, doc.getSuap());
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -119,6 +119,7 @@ public List<DocenteReservaChave> read() {
         return drcs;
 
     }
+
     public DocenteReservaChave getById(Integer pk) throws SQLException {
 
         Connection con = (Connection) ConnectionFactory.getConnection();
@@ -199,7 +200,7 @@ public List<DocenteReservaChave> read() {
         PreparedStatement stmt = null;
         try {
 
-            String sql = "UPDATE Discente_Reserva_Chaves_tb"
+            String sql = "UPDATE Docente_Reserva_Chaves_tb"
                     + " SET horaDevolucao=?"
                     + " WHERE id=?";
 
@@ -220,6 +221,59 @@ public List<DocenteReservaChave> read() {
             ConnectionFactory.closeConnection(con, stmt);
 
         }
+    }
+
+    public boolean delete(Integer pk) throws SQLException {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+
+        try {
+
+            String sql = "DELETE FROM Docente_Reserva_Chaves_tb"
+                    + " WHERE suap = "+pk;
+
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            stmt.execute();
+            JOptionPane.showMessageDialog(null, "Removido!");
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        } finally {
+
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+
+        return true;
+    }
+     public int retornaId(int mat) throws SQLException {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+
+        
+
+            String sql = "SELECT idChave FROM Docente_Reserva_Chaves_tb where suap = ?";
+
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, mat);
+
+            stmt.executeUpdate();
+            rs = stmt.executeQuery();
+          
+           
+                
+            int valor = rs.getInt("idChave");
+          
+               
+            return valor;
+
+        
+
+        
 
     }
 }

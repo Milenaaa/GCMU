@@ -124,8 +124,7 @@ public class ChavesDAO {
         try {
 
             String sql = "SELECT chaves.idChave,"
-                    + " chaves.numeroSala,"
-                    + " chaves.nomeSala,"
+                    + " chaves.identificacao,"
                     + " chaves.status"
                     + " FROM chaves_tb AS chaves"
                     + " WHERE chaves.idChave = "

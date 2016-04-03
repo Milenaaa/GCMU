@@ -156,5 +156,30 @@ public class DocenteReservaMaterialDAO {
         }
 
     }
+    public boolean delete(Integer pk) throws SQLException {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+
+        try {
+
+            String sql = "DELETE FROM Docente_Reserva_Materiais_tb"
+                    + " WHERE suap = "+pk;
+
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            stmt.execute();
+            JOptionPane.showMessageDialog(null, "Removido!");
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        } finally {
+
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+
+        return true;
+    }
 
 }

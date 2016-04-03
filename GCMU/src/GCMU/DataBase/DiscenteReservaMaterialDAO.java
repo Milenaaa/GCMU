@@ -6,10 +6,7 @@
 package GCMU.DataBase;
 
 import GCMU.DataBase.ConnectionFactory;
-import GCMU.DataBase.MateriaisDAO;
-import GCMU.classes.DiscenteReservaChave;
 import GCMU.classes.DiscenteReservaMaterial;
-import GCMU.classes.DocenteReservaMaterial;
 import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +23,7 @@ public class DiscenteReservaMaterialDAO {
 
     public void insert(DiscenteReservaMaterial discenteReservaMaterial) throws SQLException {
 
-         Connection con = (Connection) ConnectionFactory.getConnection();
+        Connection con = (Connection) ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
 
@@ -36,10 +33,9 @@ public class DiscenteReservaMaterialDAO {
 
             stmt = (PreparedStatement) con.prepareStatement(sql);
 
-            
             stmt.setInt(1, discenteReservaMaterial.getMatricula());
             stmt.setInt(2, discenteReservaMaterial.getIdMaterial());
-            
+
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Salvo!");
@@ -91,6 +87,7 @@ public class DiscenteReservaMaterialDAO {
             throw sqle;
 
         } finally {
+            
             ConnectionFactory.closeConnection(con, stmt);
 
         }
@@ -127,7 +124,7 @@ public class DiscenteReservaMaterialDAO {
 
         return discenteReservaMateriais;
     }
-    
+
     public void update(DiscenteReservaMaterial discenteReservaMaterial) throws SQLException {
 
         Connection con = (Connection) ConnectionFactory.getConnection();
@@ -157,5 +154,32 @@ public class DiscenteReservaMaterialDAO {
         }
 
     }
-    
+
+    public boolean delete(Integer pk) throws SQLException {
+
+        Connection con = (Connection) ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+
+        try {
+
+            String sql = "DELETE FROM Discente_Reserva_Materiais_tb"
+                    + " WHERE matricula = "+pk;
+
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            stmt.execute();
+            JOptionPane.showMessageDialog(null, "Removido!");
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        } finally {
+
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+
+        return true;
+    }
+
 }
