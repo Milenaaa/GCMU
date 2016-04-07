@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,6 +53,38 @@ public class DocenteReservaMaterialDAO {
 
             ConnectionFactory.closeConnection(con, stmt);
         }
+    }
+      public List<DocenteReservaMaterial> read() {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DocenteReservaMaterial> drcs = new ArrayList<DocenteReservaMaterial>();
+
+        try {
+
+            String sql = "SELECT * FROM Docente_Reserva_Materiais_tb";
+
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                DocenteReservaMaterial drc = new DocenteReservaMaterial();
+                drc.setIdMaterial(rs.getInt("idMaterial"));
+                drc.setData(rs.getDate("data"));
+                drc.setSuap(rs.getInt("suap"));
+                drc.setHoraDevolucao(rs.getString("horaDevolucao"));
+                drc.setHoraPedido(rs.getString("horaPedido"));
+                drcs.add(drc);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChavesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return drcs;
+
     }
 
     public DocenteReservaMaterial getById(Integer pk) throws SQLException {

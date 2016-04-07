@@ -148,7 +148,7 @@ public class DevolucaoChave extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
-        Crud m = new Crud();
+        ControleReservas m = new ControleReservas();
         m.setVisible(true);
         dispose();
     }//GEN-LAST:event_btVoltarActionPerformed

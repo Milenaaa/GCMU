@@ -6,6 +6,7 @@
 package GCMU.DataBase;
 
 import GCMU.DataBase.ConnectionFactory;
+import GCMU.classes.DiscenteReservaChave;
 import GCMU.classes.DiscenteReservaMaterial;
 import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,6 +51,39 @@ public class DiscenteReservaMaterialDAO {
 
             ConnectionFactory.closeConnection(con, stmt);
         }
+    }
+    
+    public List<DiscenteReservaMaterial> read() {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DiscenteReservaMaterial> drcs = new ArrayList<DiscenteReservaMaterial>();
+
+        try {
+
+            String sql = "SELECT * FROM Discente_Reserva_Materiais_tb";
+
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                DiscenteReservaMaterial drc = new DiscenteReservaMaterial();
+                drc.setIdMaterial(rs.getInt("idMaterial"));
+                drc.setData(rs.getDate("data"));
+                drc.setMatricula(rs.getInt("matricula"));
+                drc.setHoraDevolucao(rs.getString("horaDevolucao"));
+                drc.setHoraPedido(rs.getString("horaPedido"));
+                drcs.add(drc);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChavesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return drcs;
+
     }
 
     public DiscenteReservaMaterial getById(Integer pk) throws SQLException {
