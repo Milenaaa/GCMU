@@ -624,8 +624,6 @@ public class ChavesDAO {
 
             ConnectionFactory.closeConnection(con, stmt);
 
-        }
-        
-            
+        }           
     }
 }

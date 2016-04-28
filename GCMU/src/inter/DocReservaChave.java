@@ -5,6 +5,7 @@
  */
 package inter;
 
+import inter.view.imagens.Reserva;
 import GCMU.DataBase.ChavesDAO;
 import GCMU.DataBase.DocenteReservaChaveDAO;
 import GCMU.classes.Chaves;

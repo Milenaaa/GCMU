@@ -6,6 +6,7 @@
 package GCMU.DataBase;
 
 import GCMU.DataBase.ConnectionFactory;
+import GCMU.classes.Discente;
 import GCMU.classes.DiscenteReservaChave;
 import GCMU.classes.DiscenteReservaMaterial;
 import com.mysql.jdbc.Connection;
@@ -85,7 +86,39 @@ public class DiscenteReservaMaterialDAO {
         return drcs;
 
     }
+ public List<DiscenteReservaMaterial> read2(Discente di) {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DiscenteReservaMaterial> drcs = new ArrayList<DiscenteReservaMaterial>();
 
+        try {
+
+            String sql = "SELECT * FROM Discente_Reserva_Materiais_tb where matricula = ?";
+
+            stmt = con.prepareStatement(sql);
+             stmt.setInt(1, di.getMatricula());
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                DiscenteReservaMaterial drc = new DiscenteReservaMaterial();
+                drc.setIdMaterial(rs.getInt("idMaterial"));
+                drc.setData(rs.getDate("data"));
+                drc.setMatricula(rs.getInt("matricula"));
+                drc.setHoraDevolucao(rs.getString("horaDevolucao"));
+                drc.setHoraPedido(rs.getString("horaPedido"));
+                drcs.add(drc);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChavesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return drcs;
+
+    }
     public DiscenteReservaMaterial getById(Integer pk) throws SQLException {
 
         Connection con = (Connection) ConnectionFactory.getConnection();

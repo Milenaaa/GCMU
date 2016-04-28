@@ -8,6 +8,8 @@ package GCMU.DataBase;
 import GCMU.DataBase.ConnectionFactory;
 import GCMU.DataBase.MateriaisDAO;
 import GCMU.classes.DiscenteReservaMaterial;
+import GCMU.classes.Docente;
+import GCMU.classes.DocenteReservaChave;
 import GCMU.classes.DocenteReservaMaterial;
 import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
@@ -79,6 +81,39 @@ public class DocenteReservaMaterialDAO {
 
         } catch (SQLException ex) {
             Logger.getLogger(ChavesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return drcs;
+
+    }
+public List<DocenteReservaMaterial> read2(Docente doc) {
+        Connection con = (Connection) ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DocenteReservaMaterial> drcs = new ArrayList<DocenteReservaMaterial>();
+
+        try {
+
+            String sql = "SELECT * FROM Docente_Reserva_Materiais_tb where suap = ?";
+
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, doc.getSuap());
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                DocenteReservaMaterial drc = new DocenteReservaMaterial();
+                drc.setIdMaterial(rs.getInt("idMaterial"));
+                drc.setData(rs.getDate("data"));
+                drc.setSuap(rs.getInt("suap"));
+                drc.setHoraDevolucao(rs.getString("horaDevolucao"));
+                drc.setHoraPedido(rs.getString("horaPedido"));
+                drcs.add(drc);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MateriaisDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }

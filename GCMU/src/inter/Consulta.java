@@ -5,6 +5,7 @@
  */
 package inter;
 
+
 import GCMU.DataBase.ChavesDAO;
 import GCMU.DataBase.DiscenteDAO;
 import GCMU.DataBase.DiscenteReservaChaveDAO;
@@ -83,7 +84,7 @@ public class Consulta extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(191, 239, 255));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel1.setText("O que deseja Consultar?");
 
         jButton1.setText("Chave");
@@ -114,7 +115,7 @@ public class Consulta extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Docente");
+        jButton5.setText("Servidor");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -326,6 +327,7 @@ public class Consulta extends javax.swing.JFrame {
                 .addGap(0, 20, Short.MAX_VALUE))
         );
 
+        btVoltar.setBackground(new java.awt.Color(204, 204, 255));
         btVoltar.setText("Voltar");
         btVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

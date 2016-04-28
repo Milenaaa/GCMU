@@ -21,6 +21,15 @@ public class DiscenteReservaChave {
     private Discente discente;
     private int matricula;
     private int idChave;
+    
+    public DiscenteReservaChave(){}
+    
+    public DiscenteReservaChave(Integer matricula, Integer idChave){
+        
+        this.matricula = matricula;
+        this.idChave = idChave;
+        
+    }
 
     public int getMatricula() {
         return matricula;

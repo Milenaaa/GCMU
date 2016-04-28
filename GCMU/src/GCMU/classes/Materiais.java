@@ -18,6 +18,16 @@ public class Materiais {
     private Docente docente;
     private DiscenteReservaMaterial discenteReserva;
     private Discente discente;
+    
+    public Materiais (){}
+    
+    public Materiais (String tipo, String status, String observacao, Integer numeroSala, String nomeSala){
+        this.tipo = tipo;
+        this.status = status;
+        this.observacao = observacao;
+        this.numeroSala = numeroSala;
+        this.nomeSala = nomeSala;
+    }
 
     public int getId() {
         return id;

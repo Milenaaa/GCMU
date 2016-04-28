@@ -7,10 +7,19 @@ package GCMU.classes;
 public class Utensilios {
 	private String locall;
 	private String tipo;
-
 	private String observacao;
 	private String marca;
 	private int id;
+        
+        public Utensilios(){}
+        
+        public Utensilios(String tipo, String observacao, String locall, String marca){
+            
+            this.tipo = tipo;
+            this.observacao = observacao;
+            this.locall = locall;
+            this.marca = marca;
+        }
 
 	
 	public String getLocall() {
